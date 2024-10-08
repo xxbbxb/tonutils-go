@@ -157,8 +157,11 @@ type Wallet struct {
 	spec any
 }
 
-func FromPrivateKey(api TonAPI, key ed25519.PrivateKey, version VersionConfig) (*Wallet, error) {
+func FromPrivateKey(api TonAPI, key ed25519.PrivateKey, version VersionConfig, subwalletId ...uint32) (*Wallet, error) {
 	var subwallet uint32 = DefaultSubwallet
+	if len(subwalletId) > 0 {
+		subwallet = subwalletId[0]
+	}
 
 	// default subwallet depends on wallet type
 	switch version.(type) {

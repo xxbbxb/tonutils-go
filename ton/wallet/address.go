@@ -5,6 +5,7 @@ import (
 	"context"
 	"crypto/ed25519"
 	"fmt"
+
 	"github.com/xssnick/tonutils-go/address"
 	"github.com/xssnick/tonutils-go/tlb"
 	"github.com/xssnick/tonutils-go/tvm/cell"
@@ -23,7 +24,7 @@ func AddressFromPubKey(key ed25519.PublicKey, version VersionConfig, subwallet u
 		return nil, fmt.Errorf("failed to get state cell: %w", err)
 	}
 
-	addr := address.NewAddress(0, 0, stateCell.Hash())
+	addr := address.NewAddress(0, int(subwallet)-DefaultSubwallet, stateCell.Hash())
 
 	return addr, nil
 }
