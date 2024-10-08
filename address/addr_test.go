@@ -415,7 +415,7 @@ func TestMustParseRawAddr(t *testing.T) {
 func TestNewAddressFromBytes(t *testing.T) {
 	type args struct {
 		flags     byte
-		workchain byte
+		workchain int
 		data      []byte
 	}
 	tests := []struct {
