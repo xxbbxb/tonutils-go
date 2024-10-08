@@ -20,5 +20,5 @@ type StateInit struct {
 
 func (s StateInit) CalcAddress(workchain int) *address.Address {
 	c, _ := ToCell(s)
-	return address.NewAddress(0, workchain, c.Hash())
+	return address.NewAddress(0, byte(workchain), c.Hash())
 }

@@ -24,7 +24,7 @@ func AddressFromPubKey(key ed25519.PublicKey, version VersionConfig, subwallet u
 		return nil, fmt.Errorf("failed to get state cell: %w", err)
 	}
 
-	addr := address.NewAddress(0, int(subwallet)-DefaultSubwallet, stateCell.Hash())
+	addr := address.NewAddress(0, byte(subwallet-DefaultSubwallet), stateCell.Hash())
 
 	return addr, nil
 }

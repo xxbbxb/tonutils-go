@@ -146,7 +146,7 @@ func main() {
 
 				for _, id := range fetchedIDs {
 					// get full transaction by id
-					tx, err := api.GetTransaction(ctx, shard, address.NewAddress(0, int(shard.Workchain), id.Account), id.LT)
+					tx, err := api.GetTransaction(ctx, shard, address.NewAddress(0, byte(shard.Workchain), id.Account), id.LT)
 					if err != nil {
 						log.Fatalln("get tx data err:", err.Error())
 						return

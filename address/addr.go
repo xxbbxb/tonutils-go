@@ -37,11 +37,11 @@ type flags struct {
 	testnet    bool
 }
 
-func NewAddress(flags byte, workchain int, data []byte) *Address {
+func NewAddress(flags byte, workchain byte, data []byte) *Address {
 	return &Address{
 		flags:     parseFlags(flags),
 		addrType:  StdAddress,
-		workchain: int32(workchain),
+		workchain: int32(int8(workchain)),
 		bitsLen:   256,
 		data:      data,
 	}
@@ -251,7 +251,7 @@ func ParseAddr(addr string) (*Address, error) {
 		return nil, errors.New("invalid address")
 	}
 
-	a := NewAddress(data[0], int(data[1]), data[2:len(data)-2])
+	a := NewAddress(data[0], data[1], data[2:len(data)-2])
 	return a, nil
 }
 
@@ -274,7 +274,7 @@ func ParseRawAddr(addr string) (*Address, error) {
 	if err != nil {
 		return nil, err
 	}
-	return NewAddress(0, int(wc), data), nil
+	return NewAddress(0, byte(wc), data), nil
 }
 
 func (a *Address) Checksum() uint16 {

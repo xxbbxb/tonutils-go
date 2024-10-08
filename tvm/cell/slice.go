@@ -468,7 +468,7 @@ func (c *Slice) LoadAddr() (*address.Address, error) {
 			return nil, fmt.Errorf("failed to load addr data: %w", err)
 		}
 
-		return address.NewAddress(0, int(workchain), data), nil
+		return address.NewAddress(0, byte(workchain), data), nil
 	case 3:
 		isAnycast, err := c.LoadBoolBit()
 		if err != nil {
